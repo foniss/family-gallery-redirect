@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <title>Family Gallery</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Family Gallery</title>
     <style>
         body {
             background: #0a0a0a;
@@ -24,21 +24,32 @@
 </head>
 <body>
     <h2>📸 Loading Family Gallery...</h2>
-    <p id="status">Please wait...</p>
-    <a href="https://conferencing-tapes-years-warming.trycloudflare.com" id="link">Click here if not redirected</a>
-    <p style="font-size:10px;color:#555;margin-top:20px">Build: 1784135203</p>
+    <p id="status">Fetching latest URL...</p>
+    <a href="#" id="fallback" style="display:none">Click to continue</a>
+    
     <script>
-        // Redirect immediately with cache buster
-        (function() {
-            var url = "https://conferencing-tapes-years-warming.trycloudflare.com";
-            // Try replace first (doesn't add to history)
-            try {
-                window.location.replace(url);
-            } catch(e) {
-                // Fallback to href
-                window.location.href = url;
+        // Fetch the current URL with cache-buster
+        const bustCache = Date.now();
+        fetch('url.json?t=' + bustCache, {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache'
             }
-        })();
+        })
+        .then(r => r.json())
+        .then(data => {
+            document.getElementById('status').textContent = 'Redirecting...';
+            const link = document.getElementById('fallback');
+            link.href = data.url;
+            link.style.display = 'inline-block';
+            window.location.replace(data.url);
+        })
+        .catch(err => {
+            document.getElementById('status').textContent = 
+                'Error loading gallery. Please refresh.';
+            console.error(err);
+        });
     </script>
 </body>
 </html>
