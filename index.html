@@ -28,14 +28,9 @@
     <a href="#" id="fallback" style="display:none">Click to continue</a>
     
     <script>
-        // Fetch the current URL with cache-buster
         const bustCache = Date.now();
         fetch('url.json?t=' + bustCache, {
             cache: 'no-store',
-            headers: {
-                'Cache-Control': 'no-cache, no-store, must-revalidate',
-                'Pragma': 'no-cache'
-            }
         })
         .then(r => r.json())
         .then(data => {
@@ -48,7 +43,6 @@
         .catch(err => {
             document.getElementById('status').textContent = 
                 'Error loading gallery. Please refresh.';
-            console.error(err);
         });
     </script>
 </body>
